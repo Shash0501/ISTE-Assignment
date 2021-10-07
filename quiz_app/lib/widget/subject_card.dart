@@ -1,6 +1,10 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quiz_app/bloc/quiz_bloc.dart';
+import 'package:quiz_app/constants/questions.dart';
 import 'package:quiz_app/constants/subjects.dart';
+import 'package:quiz_app/screens/testpage.dart';
 
 class SubjectCard extends StatelessWidget {
   Subject subject;
@@ -11,7 +15,9 @@ class SubjectCard extends StatelessWidget {
 
   final namecontroller = TextEditingController();
   void showAlertDialog(BuildContext context, bool isLightTheme) {
-    String name;
+    QuizBloc a = BlocProvider.of<QuizBloc>(context);
+
+    late String name;
     showDialog(
         context: context,
         builder: (context) {
@@ -59,12 +65,36 @@ class SubjectCard extends StatelessWidget {
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
-                      print(_formKey.currentState);
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-                        namecontroller.clear();
-                        Navigator.pop(context);
-                      }
+                      Navigator.pop(context);
+                      //TODO: add name here
+                      a.add(
+                        StartQuiz(
+                          questions: subject.questions,
+                          playerName: "shashank",
+                        ),
+                      );
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => BlocProvider.value(
+                                  value: a, child: TestPage())));
+                      // if (_formKey.currentState!.validate()) {
+                      //   _formKey.currentState!.save();
+                      //   namecontroller.clear();
+                      //   Navigator.pop(context);
+                      //   //TODO: add name here
+                      //   a.add(
+                      //     StartQuiz(
+                      //       questions: subject.questions,
+                      //       playerName: name,
+                      //     ),
+                      //   );
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => BlocProvider.value(
+                      //               value: a, child: TestPage())));
+                      // }
                     },
                     child: const Text('Ok')),
                 TextButton(

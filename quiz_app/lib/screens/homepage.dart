@@ -2,6 +2,7 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/bloc/quiz_bloc.dart';
+import 'package:quiz_app/constants/questions.dart';
 import 'package:quiz_app/constants/subjects.dart';
 import 'package:quiz_app/constants/themedata.dart';
 import 'package:quiz_app/screens/testscreen.dart';
@@ -41,8 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     },
                     icon: isLightTheme
-                        ? Icon(Icons.brightness_3, size: 25)
-                        : Icon(Icons.wb_sunny_rounded));
+                        ? const Icon(Icons.brightness_3, size: 25)
+                        : const Icon(Icons.wb_sunny_rounded));
               },
             ),
           ],
@@ -68,7 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisSpacing: 10,
               crossAxisCount: 2,
               children: subjectList
-                  .map((value) => SubjectCard(context: context, subject: value))
+                  .map((value) => SubjectCard(
+                        context: context,
+                        subject: value,
+                      ))
                   .toList(),
             ),
           ),
