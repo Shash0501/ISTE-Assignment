@@ -65,36 +65,36 @@ class SubjectCard extends StatelessWidget {
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      // Navigator.pop(context);
                       //TODO: add name here
-                      a.add(
-                        StartQuiz(
-                          questions: subject.questions,
-                          playerName: "shashank",
-                        ),
-                      );
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => BlocProvider.value(
-                                  value: a, child: TestPage())));
-                      // if (_formKey.currentState!.validate()) {
-                      //   _formKey.currentState!.save();
-                      //   namecontroller.clear();
-                      //   Navigator.pop(context);
-                      //   //TODO: add name here
-                      //   a.add(
-                      //     StartQuiz(
-                      //       questions: subject.questions,
-                      //       playerName: name,
-                      //     ),
-                      //   );
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (context) => BlocProvider.value(
-                      //               value: a, child: TestPage())));
-                      // }
+                      // a.add(
+                      //   StartQuiz(
+                      //     questions: subject.questions,
+                      //     playerName: "shashank",
+                      //   ),
+                      // );
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        namecontroller.clear();
+                        Navigator.pop(context);
+                        //TODO: add name here
+                        a.add(
+                          StartQuiz(
+                            questions: subject.questions,
+                            playerName: name,
+                          ),
+                        );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BlocProvider.value(
+                                    value: a, child: TestPage())));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => BlocProvider.value(
+                        //             value: a, child: TestPage())));
+                      }
                     },
                     child: const Text('Ok')),
                 TextButton(

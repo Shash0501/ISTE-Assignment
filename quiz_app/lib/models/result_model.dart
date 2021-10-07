@@ -11,10 +11,13 @@ class ResultModel {
 
   @HiveField(2)
   int marks;
+  @HiveField(3)
+  String playerName;
 
   ResultModel({
     required this.subject,
     required this.correctanswers,
     required this.marks,
+    required this.playerName,
   });
 }

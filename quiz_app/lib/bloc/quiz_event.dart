@@ -30,3 +30,15 @@ class QuizContinue extends QuizEvent implements Equatable {
   @override
   List<Object> get props => [questions, questionIndex, marks, playerName];
 }
+
+class QuizFinished extends QuizEvent {
+  final int marks;
+  final String playerName;
+  List<Question> questions;
+  QuizFinished(
+      {required this.marks, required this.playerName, required this.questions});
+}
+
+class StatsPageEvent extends QuizEvent {}
+
+class HomePageEvent extends QuizEvent {}

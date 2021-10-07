@@ -20,19 +20,22 @@ class ResultModelAdapter extends TypeAdapter<ResultModel> {
       subject: fields[0] as String,
       correctanswers: fields[1] as int,
       marks: fields[2] as int,
+      playerName: fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, ResultModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.subject)
       ..writeByte(1)
       ..write(obj.correctanswers)
       ..writeByte(2)
-      ..write(obj.marks);
+      ..write(obj.marks)
+      ..writeByte(3)
+      ..write(obj.playerName);
   }
 
   @override

@@ -16,37 +16,45 @@ class Question {
   });
 }
 
+var subjectname = {
+  physics: "PHYSICS",
+  chemistry: "CHEMISTRY",
+  maths: "MATHS",
+  history: "HISTORY"
+};
+
 List<Question> physics = [
   Question(
-      questionText: "what is unit of energy ?",
+      questionText: " what is unit of energy ?",
       option1: "mass",
       option2: "joules",
       option3: "speed",
       option4: "time",
       correctAnswer: 2),
   Question(
-      questionText: "what is unit of energy ?",
+      questionText:
+          "what is unit of energy is unit of energy unit of energy is unit of energy ? ?",
       option1: "mass",
       option2: "joules",
       option3: "speed",
       option4: "time",
       correctAnswer: 2),
   Question(
-      questionText: "what is unit of energy ?",
+      questionText: "what is unit of hello ?",
       option1: "mass",
       option2: "joules",
       option3: "speed",
       option4: "time",
       correctAnswer: 2),
   Question(
-      questionText: "what is unit of energy ?",
+      questionText: "what is unit of my ?",
       option1: "mass",
       option2: "joules",
       option3: "speed",
       option4: "time",
       correctAnswer: 2),
   Question(
-      questionText: "what is unit of energy ?",
+      questionText: "what is unit of name ?",
       option1: "mass",
       option2: "joules",
       option3: "speed",
@@ -91,7 +99,7 @@ List<Question> physics = [
 
 List<Question> maths = [
   Question(
-      questionText: "what is unit of energy ?",
+      questionText: "what is unit of energy ?sfdfsdfsdfsdfsdfsdfsdff",
       option1: "mass",
       option2: "joules",
       option3: "speed",
