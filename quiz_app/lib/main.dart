@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             theme: myTheme,
             home: const MyHomePage(
-              title: 'abc',
+              title: 'QUIZ',
             ),
           );
         },

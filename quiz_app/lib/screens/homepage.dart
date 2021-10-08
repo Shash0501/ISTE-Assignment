@@ -29,7 +29,9 @@ class _MyHomePageState extends State<MyHomePage> {
       length: 2,
       initialIndex: 0,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          centerTitle: true,
           title: Text(widget.title),
           actions: [
             ThemeSwitcher(
@@ -65,7 +67,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 controller: DefaultTabController.of(context),
                 unselectedLabelColor: Colors.white.withOpacity(0.3),
                 indicatorColor: isLightTheme ? Colors.black : Colors.green,
-                tabs: const [Text("HOME"), Text("STATS")]),
+                tabs: const [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 8, 0, 10),
+                    child: Text("HOME"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 8, 0, 10),
+                    child: Text("STATS"),
+                  )
+                ]),
           ),
         ),
         body: BlocBuilder<QuizBloc, QuizState>(
@@ -80,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     return ListView.builder(
                       itemCount: box.values.length,
                       itemBuilder: (context, index) {
-                        var result = box.getAt(index);
+                        var result = box.getAt(box.values.length - index - 1);
                         return ListTile(
                           title: Text(result!.subject),
                           subtitle: Text(result.playerName),
@@ -93,6 +104,17 @@ class _MyHomePageState extends State<MyHomePage> {
               );
             } else {
               return Column(children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 15.0, 100, 0),
+                  child: Text(
+                    "Let's Play Quiz",
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: isLightTheme ? Colors.black : Colors.white,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 8.0),
                   child: GridView.count(
@@ -108,6 +130,38 @@ class _MyHomePageState extends State<MyHomePage> {
                         .toList(),
                   ),
                 ),
+                Divider(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 6.0, 0, 6),
+                  child: Text(
+                    "Recent Results",
+                    style: TextStyle(
+                        color: isLightTheme ? Colors.black : Colors.white,
+                        fontSize: 25),
+                  ),
+                ),
+                ValueListenableBuilder(
+                  valueListenable:
+                      Hive.box<ResultModel>('results').listenable(),
+                  builder: (context, Box<ResultModel> box, _) {
+                    if (box.values.isEmpty) {
+                      return const Text('No Quiz Taken Yet');
+                    } else {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 2,
+                        itemBuilder: (context, index) {
+                          var result = box.getAt(box.values.length - index - 1);
+                          return ListTile(
+                            title: Text(result!.subject),
+                            subtitle: Text(result.playerName),
+                            trailing: Text(result.marks.toString()),
+                          );
+                        },
+                      );
+                    }
+                  },
+                )
               ]);
             }
           },

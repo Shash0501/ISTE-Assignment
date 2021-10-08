@@ -43,12 +43,31 @@ class _ResultPageState extends State<ResultPage> {
               ],
             ),
             body: Center(
-              child: CircularPercentIndicator(
-                radius: 100.0,
-                lineWidth: 5.0,
-                percent: state.marks / 10,
-                center: Text(state.marks.toString()),
-                progressColor: Colors.green,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(state.playerName.toUpperCase(),
+                        style: const TextStyle(fontSize: 20)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      state.SubjectName,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  Center(
+                    child: CircularPercentIndicator(
+                      radius: MediaQuery.of(context).size.width / 2,
+                      lineWidth: 20,
+                      percent: state.marks / 10,
+                      center: Text(state.marks.toString(),
+                          style: const TextStyle(fontSize: 20)),
+                      progressColor: Colors.green,
+                    ),
+                  ),
+                ],
               ),
             ),
           );

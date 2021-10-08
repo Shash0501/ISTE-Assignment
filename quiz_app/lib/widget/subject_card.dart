@@ -65,14 +65,6 @@ class SubjectCard extends StatelessWidget {
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
-                      // Navigator.pop(context);
-                      //TODO: add name here
-                      // a.add(
-                      //   StartQuiz(
-                      //     questions: subject.questions,
-                      //     playerName: "shashank",
-                      //   ),
-                      // );
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
                         namecontroller.clear();
@@ -89,19 +81,22 @@ class SubjectCard extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => BlocProvider.value(
                                     value: a, child: TestPage())));
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => BlocProvider.value(
-                        //             value: a, child: TestPage())));
                       }
                     },
-                    child: const Text('Ok')),
+                    child: Text(
+                      'Ok',
+                      style: TextStyle(
+                        color: isLightTheme ? Colors.black : Colors.white,
+                      ),
+                    )),
                 TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: const Text('No')),
+                    child: Text('No',
+                        style: TextStyle(
+                          color: isLightTheme ? Colors.black : Colors.white,
+                        ))),
               ]);
         });
   }
@@ -119,6 +114,13 @@ class SubjectCard extends StatelessWidget {
         width: 10,
         decoration: BoxDecoration(
           color: subject.color,
+          gradient: RadialGradient(
+            colors: [
+              subject.color,
+              subject.color.withOpacity(isLightTheme ? 0.8 : 0.6),
+            ],
+            radius: 0.6,
+          ),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -129,7 +131,14 @@ class SubjectCard extends StatelessWidget {
           ],
         ),
         child: Center(
-          child: Text(subject.subjectName),
+          child: Text(
+            subject.subjectName,
+            style: const TextStyle(
+                color: Colors.black,
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2),
+          ),
         ),
       ),
     );
